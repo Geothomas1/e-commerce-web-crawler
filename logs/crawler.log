@@ -1,0 +1,52 @@
+2025-04-06 13:55:46,604 - INFO - Starting crawler...
+2025-04-06 13:55:49,316 - INFO - Found 0 product URLs on https://www.virgio.com
+2025-04-06 13:55:49,318 - INFO - Results saved to results/eb4554e4-0ac9-4049-83e8-ed2dfa03e7f4_results.csv
+2025-04-06 13:55:49,318 - INFO - Domain results saved to products_www_virgio_com.csv
+2025-04-06 13:56:03,326 - INFO - Starting crawler...
+2025-04-06 13:56:50,154 - ERROR - Error fetching https://www.virgio.com/collections/all Retrying : 1: 
+2025-04-06 13:56:50,154 - ERROR - Error fetching https://www.virgio.com/pages/ambassador-program Retrying : 1: 
+2025-04-06 13:56:50,154 - ERROR - Error fetching https://www.virgio.com/collections/bottomwear-date Retrying : 1: 
+2025-04-06 13:56:50,155 - ERROR - Error fetching https://www.virgio.com/collections/dresses-date Retrying : 1: 
+2025-04-06 13:56:50,155 - ERROR - Error fetching https://www.virgio.com/blogs/news Retrying : 1: 
+2025-04-06 13:56:50,155 - ERROR - Error fetching https://www.virgio.com/pages/user-policy Retrying : 1: 
+2025-04-06 13:56:50,155 - ERROR - Error fetching https://www.virgio.com/pages/terms-and-conditions Retrying : 1: 
+2025-04-06 13:56:50,155 - ERROR - Error fetching https://www.virgio.com/stores Retrying : 1: 
+2025-04-06 13:56:50,155 - ERROR - Error fetching https://www.virgio.com/irl Retrying : 1: 
+2025-04-06 13:56:50,155 - ERROR - Error fetching https://www.virgio.com/pages/sustainability Retrying : 1: 
+2025-04-06 13:56:50,155 - ERROR - Error fetching https://www.virgio.com/sustainability Retrying : 1: 
+2025-04-06 13:56:50,155 - ERROR - Error fetching https://www.virgio.com/smile-in-style Retrying : 1: 
+2025-04-06 13:56:51,113 - WARNING - Failed to fetch https://www.virgio.com/collections/bottomwear-date, status code: 404
+2025-04-06 13:56:51,506 - INFO - Found 6 product URLs on https://www.virgio.com
+2025-04-06 13:56:51,507 - INFO - Results saved to results/2b1782cc-35ac-4a83-aae4-9eea6e5ff788_results.csv
+2025-04-06 13:56:51,508 - INFO - Domain results saved to products_www_virgio_com.csv
+2025-04-06 14:01:51,379 - INFO - Starting crawler...
+2025-04-06 14:02:29,684 - WARNING - Failed to fetch https://www.virgio.com/collections/bottomwear-date, status code: 404
+2025-04-06 14:02:45,152 - INFO - Starting crawler...
+2025-04-06 14:03:24,674 - WARNING - Failed to fetch https://www.virgio.com/collections/bottomwear-date, status code: 404
+2025-04-06 14:03:31,160 - ERROR - Error fetching https://www.virgio.com/know-your-size Retrying : 1: 
+2025-04-06 14:03:31,162 - ERROR - Error fetching https://www.virgio.com/pages/privacy-policy Retrying : 1: 
+2025-04-06 14:03:31,162 - ERROR - Error fetching https://www.virgio.com/collections/cotton Retrying : 1: 
+2025-04-06 14:03:31,163 - ERROR - Error fetching https://www.virgio.com/collections/jumpsuits Retrying : 1: 
+2025-04-06 14:03:31,163 - ERROR - Error fetching https://www.virgio.com/pages/ambassador-program Retrying : 1: 
+2025-04-06 14:03:31,164 - ERROR - Error fetching https://www.virgio.com/products/date-chic-red-solid-co-ords Retrying : 1: 
+2025-04-06 14:03:31,164 - ERROR - Error fetching https://www.virgio.com/products/veronicas-chic-cotton-co-ords Retrying : 1: 
+2025-04-06 14:03:31,165 - ERROR - Error fetching https://www.virgio.com/pages/sustainability Retrying : 1: 
+2025-04-06 14:03:31,165 - ERROR - Error fetching https://www.virgio.com/collections/discount-delights Retrying : 1: 
+2025-04-06 14:03:32,338 - INFO - Found 6 product URLs on https://www.virgio.com
+2025-04-06 14:03:32,340 - INFO - Domain results saved to results/3a9a0a71-e76d-400a-93ac-db9deb7c2c5e_www_virgio_com.csv
+2025-04-06 14:06:19,553 - INFO - Starting crawler...
+2025-04-06 14:06:54,813 - WARNING - Failed to fetch https://www.virgio.com/collections/bottomwear-date, status code: 404
+2025-04-06 14:07:06,158 - ERROR - Error fetching https://www.virgio.com/pages/user-policy Retrying : 1: 
+2025-04-06 14:07:06,159 - ERROR - Error fetching https://www.virgio.com/collections/jumpsuits Retrying : 1: 
+2025-04-06 14:07:06,159 - ERROR - Error fetching https://www.virgio.com/pages/ambassador-program Retrying : 1: 
+2025-04-06 14:07:06,160 - ERROR - Error fetching https://www.virgio.com/products/veronicas-chic-cotton-co-ords Retrying : 1: 
+2025-04-06 14:07:06,160 - ERROR - Error fetching https://www.virgio.com/collections/top-wear-date Retrying : 1: 
+2025-04-06 14:07:06,161 - ERROR - Error fetching https://www.virgio.com/ Retrying : 1: 
+2025-04-06 14:07:06,161 - ERROR - Error fetching https://www.virgio.com/pages/privacy-policy Retrying : 1: 
+2025-04-06 14:07:06,161 - ERROR - Error fetching https://www.virgio.com/pages/terms-and-conditions Retrying : 1: 
+2025-04-06 14:07:06,162 - ERROR - Error fetching https://www.virgio.com/pages/refund-policy Retrying : 1: 
+2025-04-06 14:07:06,162 - ERROR - Error fetching https://www.virgio.com/collections/discount-delights Retrying : 1: 
+2025-04-06 14:07:06,162 - ERROR - Error fetching https://www.virgio.com/products/date-comfy-beige-relaxed-trousers Retrying : 1: 
+2025-04-06 14:07:06,162 - ERROR - Error fetching https://www.virgio.com/products/date-breezy-black-relaxed-trousers Retrying : 1: 
+2025-04-06 14:07:07,549 - INFO - Found 6 product URLs on https://www.virgio.com
+2025-04-06 14:07:07,551 - INFO - Domain results saved to results/6ef5ee0e-6005-4093-917a-822f2aff0262_www_virgio_com.csv
