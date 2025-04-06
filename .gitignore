@@ -1,0 +1,68 @@
+# Byte-compiled / optimized / compiled Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environment
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Pipenv and Poetry
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Pyre type checker
+.pyre/
+
+
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+
+# Other editors
+*.swp
+*.swo
+*.swn
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+
+# Build files
+build/
+dist/
+*.egg-info/
+.eggs/
+MANIFEST
+
+
+# Docker
+*.env
+docker-compose.override.yml
+
+# Environment-specific
+*.local
+
+# System files
+.vscode/
+.env
