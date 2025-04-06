@@ -50,3 +50,179 @@
 2025-04-06 14:07:06,162 - ERROR - Error fetching https://www.virgio.com/products/date-breezy-black-relaxed-trousers Retrying : 1: 
 2025-04-06 14:07:07,549 - INFO - Found 6 product URLs on https://www.virgio.com
 2025-04-06 14:07:07,551 - INFO - Domain results saved to results/6ef5ee0e-6005-4093-917a-822f2aff0262_www_virgio_com.csv
+2025-04-07 00:21:45,720 - INFO - Starting crawler...
+2025-04-07 00:22:25,649 - WARNING - Failed to fetch https://www.virgio.com/collections/bottomwear-date, status code: 404
+2025-04-07 00:22:32,773 - ERROR - Error fetching https://www.virgio.com/irl Retrying : 1: 
+2025-04-07 00:22:32,773 - ERROR - Error fetching https://www.virgio.com/pages/terms-and-conditions Retrying : 1: 
+2025-04-07 00:22:32,774 - ERROR - Error fetching https://www.virgio.com/collections/all Retrying : 1: 
+2025-04-07 00:22:32,774 - ERROR - Error fetching https://www.virgio.com/collections/co-ords-date Retrying : 1: 
+2025-04-07 00:22:32,774 - ERROR - Error fetching https://www.virgio.com/pages/about-us Retrying : 1: 
+2025-04-07 00:22:32,774 - ERROR - Error fetching https://www.virgio.com/collections/virgio-x-iifa Retrying : 1: 
+2025-04-07 00:22:33,632 - INFO - Found 6 product URLs on https://www.virgio.com
+2025-04-07 00:22:33,638 - INFO - Domain results saved to results/4583acbd-0e7e-471d-81be-756837535a2c_www_virgio_com.csv
+2025-04-07 00:22:37,860 - INFO - Starting crawler...
+2025-04-07 00:23:13,365 - INFO - URL: https://www.virgio.com/products/veronicas-playful-cotton-checked-skirt, Product Score: 9, Collection Score: 0
+2025-04-07 00:23:13,970 - INFO - URL: https://www.virgio.com/products/veronicas-chic-cotton-co-ords, Product Score: 9, Collection Score: 0
+2025-04-07 00:23:14,486 - WARNING - Failed to fetch https://www.virgio.com/collections/bottomwear-date, status code: 404
+2025-04-07 00:23:15,706 - INFO - URL: https://www.virgio.com/products/date-breezy-black-relaxed-trousers, Product Score: 9, Collection Score: 2
+2025-04-07 00:23:17,660 - INFO - URL: https://www.virgio.com/products/veronicas-retro-cotton-pleated-skirt, Product Score: 9, Collection Score: 0
+2025-04-07 00:23:23,772 - ERROR - Error fetching https://www.virgio.com/pages/user-policy Retrying : 1: 
+2025-04-07 00:23:23,773 - ERROR - Error fetching https://www.virgio.com/collections/natural-shirts-for-women Retrying : 1: 
+2025-04-07 00:23:23,773 - ERROR - Error fetching https://www.virgio.com/pages/terms-and-conditions Retrying : 1: 
+2025-04-07 00:23:23,773 - ERROR - Error fetching https://www.virgio.com/pages/refund-policy Retrying : 1: 
+2025-04-07 00:23:23,773 - ERROR - Error fetching https://www.virgio.com/collections/cotton Retrying : 1: 
+2025-04-07 00:23:23,773 - ERROR - Error fetching https://www.virgio.com/collections/top-wear-date Retrying : 1: 
+2025-04-07 00:23:23,773 - ERROR - Error fetching https://www.virgio.com/blogs/news Retrying : 1: 
+2025-04-07 00:23:23,773 - ERROR - Error fetching https://www.virgio.com/ Retrying : 1: 
+2025-04-07 00:23:23,773 - ERROR - Error fetching https://www.virgio.com/products/date-chic-red-solid-co-ords Retrying : 1: 
+2025-04-07 00:23:23,773 - ERROR - Error fetching https://www.virgio.com/collections/discount-delights Retrying : 1: 
+2025-04-07 00:23:23,774 - ERROR - Error fetching https://www.virgio.com/products/date-comfy-beige-relaxed-trousers Retrying : 1: 
+2025-04-07 00:23:23,774 - ERROR - Error fetching https://www.virgio.com/collections/virgio-x-iifa Retrying : 1: 
+2025-04-07 00:23:24,842 - INFO - URL: https://www.virgio.com/products/date-chic-red-solid-co-ords, Product Score: 9, Collection Score: 2
+2025-04-07 00:23:25,133 - INFO - URL: https://www.virgio.com/products/date-comfy-beige-relaxed-trousers, Product Score: 9, Collection Score: 0
+2025-04-07 00:23:25,236 - INFO - Found 6 product URLs on https://www.virgio.com
+2025-04-07 00:23:25,237 - INFO - Domain results saved to results/934cb9d2-96fd-46a9-a5dc-ca5f21f28389_www_virgio_com.csv
+2025-04-07 00:56:39,667 - INFO - Starting crawler...
+2025-04-07 00:57:15,845 - INFO - URL: https://www.virgio.com/products/veronicas-retro-cotton-pleated-skirt, Product Score: 9, Collection Score: 0
+2025-04-07 00:57:16,392 - INFO - URL: https://www.virgio.com/products/veronicas-chic-cotton-co-ords, Product Score: 9, Collection Score: 0
+2025-04-07 00:57:17,109 - INFO - URL: https://www.virgio.com/products/date-comfy-beige-relaxed-trousers, Product Score: 9, Collection Score: 0
+2025-04-07 00:57:18,454 - INFO - URL: https://www.virgio.com/products/veronicas-playful-cotton-checked-skirt, Product Score: 9, Collection Score: 0
+2025-04-07 00:57:21,171 - INFO - URL: https://www.virgio.com/products/date-chic-red-solid-co-ords, Product Score: 9, Collection Score: 2
+2025-04-07 00:57:21,178 - WARNING - Failed to fetch https://www.virgio.com/collections/bottomwear-date, status code: 404
+2025-04-07 00:57:26,809 - ERROR - Error fetching https://www.virgio.com/pages/privacy-policy Retrying : 1: 
+2025-04-07 00:57:26,809 - ERROR - Error fetching https://www.virgio.com/collections/virgio-x-iifa Retrying : 1: 
+2025-04-07 00:57:26,809 - ERROR - Error fetching https://www.virgio.com/know-your-size Retrying : 1: 
+2025-04-07 00:57:26,810 - ERROR - Error fetching https://www.virgio.com/collections/top-wear-date Retrying : 1: 
+2025-04-07 00:57:26,810 - ERROR - Error fetching https://www.virgio.com/collections/cotton Retrying : 1: 
+2025-04-07 00:57:26,810 - ERROR - Error fetching https://www.virgio.com/products/date-breezy-black-relaxed-trousers Retrying : 1: 
+2025-04-07 00:57:26,810 - ERROR - Error fetching https://www.virgio.com/blogs/news Retrying : 1: 
+2025-04-07 00:57:26,810 - ERROR - Error fetching https://www.virgio.com/account Retrying : 1: 
+2025-04-07 00:57:26,810 - ERROR - Error fetching https://www.virgio.com/collections/all Retrying : 1: 
+2025-04-07 00:57:28,455 - INFO - URL: https://www.virgio.com/products/date-breezy-black-relaxed-trousers, Product Score: 9, Collection Score: 2
+2025-04-07 00:57:28,463 - INFO - Found 6 product URLs on https://www.virgio.com
+2025-04-07 00:57:28,467 - INFO - Domain results saved to results/38c39bb3-6d4c-4502-a22c-e0f6a7f109bb_www_virgio_com.csv
+2025-04-07 01:10:11,630 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-07 01:10:59,050 - INFO - Starting crawler...
+2025-04-07 01:11:36,522 - INFO - URL: https://www.virgio.com/products/date-comfy-beige-relaxed-trousers, Product Score: 9, Collection Score: 0
+2025-04-07 01:11:37,415 - INFO - URL: https://www.virgio.com/products/veronicas-retro-cotton-pleated-skirt, Product Score: 9, Collection Score: 0
+2025-04-07 01:11:38,161 - INFO - URL: https://www.virgio.com/products/date-breezy-black-relaxed-trousers, Product Score: 9, Collection Score: 2
+2025-04-07 01:11:40,886 - WARNING - Failed to fetch https://www.virgio.com/collections/bottomwear-date, status code: 404
+2025-04-07 01:11:41,640 - INFO - URL: https://www.virgio.com/products/date-chic-red-solid-co-ords, Product Score: 9, Collection Score: 2
+2025-04-07 01:11:46,804 - ERROR - Error fetching https://www.virgio.com/products/veronicas-chic-cotton-co-ords Retrying : 1: 
+2025-04-07 01:11:46,806 - ERROR - Error fetching https://www.virgio.com/pages/refund-policy Retrying : 1: 
+2025-04-07 01:11:46,806 - ERROR - Error fetching https://www.virgio.com/pages/user-policy Retrying : 1: 
+2025-04-07 01:11:46,807 - ERROR - Error fetching https://www.virgio.com/collections/top-wear-date Retrying : 1: 
+2025-04-07 01:11:46,807 - ERROR - Error fetching https://www.virgio.com/collections/cotton Retrying : 1: 
+2025-04-07 01:11:46,808 - ERROR - Error fetching https://www.virgio.com/collections/all Retrying : 1: 
+2025-04-07 01:11:46,808 - ERROR - Error fetching https://www.virgio.com/pages/sustainability Retrying : 1: 
+2025-04-07 01:11:46,808 - ERROR - Error fetching https://www.virgio.com/products/veronicas-playful-cotton-checked-skirt Retrying : 1: 
+2025-04-07 01:11:47,861 - INFO - URL: https://www.virgio.com/products/veronicas-chic-cotton-co-ords, Product Score: 9, Collection Score: 0
+2025-04-07 01:11:48,228 - INFO - URL: https://www.virgio.com/products/veronicas-playful-cotton-checked-skirt, Product Score: 9, Collection Score: 0
+2025-04-07 01:11:48,234 - INFO - Found 6 product URLs on https://www.virgio.com
+2025-04-07 01:11:48,239 - INFO - Domain results saved to /Users/geo/crawler_results/b6e41e98-dcbf-4f1c-9e8d-07754e8fdb16_www_virgio_com.csv
+2025-04-07 01:14:08,433 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-07 01:14:58,872 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-07 01:19:51,396 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-07 01:21:06,296 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-07 01:21:23,471 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-07 01:21:51,217 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-07 01:22:19,103 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-07 01:23:17,170 - INFO - Starting crawler...
+2025-04-07 01:23:54,612 - INFO - URL: https://www.virgio.com/products/veronicas-retro-cotton-pleated-skirt, Product Score: 9, Collection Score: 0
+2025-04-07 01:23:57,329 - INFO - URL: https://www.virgio.com/products/date-breezy-black-relaxed-trousers, Product Score: 9, Collection Score: 2
+2025-04-07 01:23:59,129 - WARNING - Failed to fetch https://www.virgio.com/collections/bottomwear-date, status code: 404
+2025-04-07 01:24:00,448 - INFO - URL: https://www.virgio.com/products/date-comfy-beige-relaxed-trousers, Product Score: 9, Collection Score: 0
+2025-04-07 01:24:04,802 - ERROR - Error fetching https://www.virgio.com/blogs/news Retrying : 1: 
+2025-04-07 01:24:04,802 - ERROR - Error fetching https://www.virgio.com/pages/terms-and-conditions Retrying : 1: 
+2025-04-07 01:24:04,802 - ERROR - Error fetching https://www.virgio.com/pages/about-us Retrying : 1: 
+2025-04-07 01:24:04,803 - ERROR - Error fetching https://www.virgio.com/pages/user-policy Retrying : 1: 
+2025-04-07 01:24:04,803 - ERROR - Error fetching https://www.virgio.com/smile-in-style Retrying : 1: 
+2025-04-07 01:24:04,803 - ERROR - Error fetching https://www.virgio.com/collections/top-wear-date Retrying : 1: 
+2025-04-07 01:24:04,803 - ERROR - Error fetching https://www.virgio.com/products/veronicas-playful-cotton-checked-skirt Retrying : 1: 
+2025-04-07 01:24:04,803 - ERROR - Error fetching https://www.virgio.com/collections/jumpsuits Retrying : 1: 
+2025-04-07 01:24:04,804 - ERROR - Error fetching https://www.virgio.com/ Retrying : 1: 
+2025-04-07 01:24:04,804 - ERROR - Error fetching https://www.virgio.com/collections/natural-shirts-for-women Retrying : 1: 
+2025-04-07 01:24:04,804 - ERROR - Error fetching https://www.virgio.com/products/date-chic-red-solid-co-ords Retrying : 1: 
+2025-04-07 01:24:04,804 - ERROR - Error fetching https://www.virgio.com/products/veronicas-chic-cotton-co-ords Retrying : 1: 
+2025-04-07 01:24:05,937 - INFO - URL: https://www.virgio.com/products/veronicas-playful-cotton-checked-skirt, Product Score: 9, Collection Score: 0
+2025-04-07 01:24:06,068 - INFO - URL: https://www.virgio.com/products/date-chic-red-solid-co-ords, Product Score: 9, Collection Score: 2
+2025-04-07 01:24:06,143 - INFO - URL: https://www.virgio.com/products/veronicas-chic-cotton-co-ords, Product Score: 9, Collection Score: 0
+2025-04-07 01:24:06,150 - INFO - Found 6 product URLs on https://www.virgio.com
+2025-04-07 01:26:40,922 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-07 01:27:18,308 - INFO - Starting crawler...
+2025-04-07 01:27:54,884 - INFO - URL: https://www.virgio.com/products/veronicas-retro-cotton-pleated-skirt, Product Score: 9, Collection Score: 0
+2025-04-07 01:27:55,692 - WARNING - Failed to fetch https://www.virgio.com/collections/bottomwear-date, status code: 404
+2025-04-07 01:27:56,936 - INFO - URL: https://www.virgio.com/products/date-chic-red-solid-co-ords, Product Score: 9, Collection Score: 2
+2025-04-07 01:27:59,670 - INFO - URL: https://www.virgio.com/products/veronicas-playful-cotton-checked-skirt, Product Score: 9, Collection Score: 0
+2025-04-07 01:27:59,770 - INFO - URL: https://www.virgio.com/products/veronicas-chic-cotton-co-ords, Product Score: 9, Collection Score: 0
+2025-04-07 01:28:04,812 - ERROR - Error fetching https://www.virgio.com/collections/co-ords-date Retrying : 1: 
+2025-04-07 01:28:04,812 - ERROR - Error fetching https://www.virgio.com/collections/dresses-date Retrying : 1: 
+2025-04-07 01:28:04,812 - ERROR - Error fetching https://www.virgio.com/account Retrying : 1: 
+2025-04-07 01:28:04,812 - ERROR - Error fetching https://www.virgio.com/collections/cotton Retrying : 1: 
+2025-04-07 01:28:04,812 - ERROR - Error fetching https://www.virgio.com/know-your-size Retrying : 1: 
+2025-04-07 01:28:04,812 - ERROR - Error fetching https://www.virgio.com/collections/discount-delights Retrying : 1: 
+2025-04-07 01:28:04,813 - ERROR - Error fetching https://www.virgio.com/collections/all Retrying : 1: 
+2025-04-07 01:28:04,813 - ERROR - Error fetching https://www.virgio.com/pages/sustainability Retrying : 1: 
+2025-04-07 01:28:04,813 - ERROR - Error fetching https://www.virgio.com/products/date-comfy-beige-relaxed-trousers Retrying : 1: 
+2025-04-07 01:28:04,813 - ERROR - Error fetching https://www.virgio.com/collections/jumpsuits Retrying : 1: 
+2025-04-07 01:28:04,813 - ERROR - Error fetching https://www.virgio.com/products/date-breezy-black-relaxed-trousers Retrying : 1: 
+2025-04-07 01:28:05,908 - INFO - URL: https://www.virgio.com/products/date-comfy-beige-relaxed-trousers, Product Score: 9, Collection Score: 0
+2025-04-07 01:28:06,067 - INFO - URL: https://www.virgio.com/products/date-breezy-black-relaxed-trousers, Product Score: 9, Collection Score: 2
+2025-04-07 01:28:06,073 - INFO - Found 6 product URLs on https://www.virgio.com
+2025-04-07 01:31:14,813 - ERROR - Error fetching https://www.westside.com/collections/new-in-womens-footwear Retrying : 1: 
+2025-04-07 01:31:14,814 - ERROR - Error fetching https://www.westside.com/collections/trousers-joggers Retrying : 1: 
+2025-04-07 01:31:14,814 - ERROR - Error fetching https://www.westside.com/collections/ethnic-tops-for-women Retrying : 1: 
+2025-04-07 01:31:14,814 - ERROR - Error fetching https://www.westside.com/collections/kurtas-for-plus-size-women Retrying : 1: 
+2025-04-07 01:31:14,814 - ERROR - Error fetching https://www.westside.com/collections/trending-now-man Retrying : 1: 
+2025-04-07 01:31:14,815 - ERROR - Error fetching https://www.westside.com/collections/joggers-shorts-for-men Retrying : 1: 
+2025-04-07 01:31:14,815 - ERROR - Error fetching https://www.westside.com/collections/lingerie-swimwear Retrying : 1: 
+2025-04-07 01:31:14,815 - ERROR - Error fetching https://www.westside.com/collections/jeans-western-wear-for-women Retrying : 1: 
+2025-04-07 01:31:14,815 - ERROR - Error fetching https://www.westside.com/account/login Retrying : 1: 
+2025-04-07 01:31:14,815 - ERROR - Error fetching https://www.westside.com/collections/palazzos-skirts-ethnic-wear-for-women Retrying : 1: 
+2025-04-07 01:31:14,815 - ERROR - Error fetching https://www.westside.com/collections/view-all-kids Retrying : 1: 
+2025-04-07 01:31:14,815 - ERROR - Error fetching https://www.westside.com/collections/flip-flop-slides-clog-for-men Retrying : 1: 
+2025-04-07 01:31:14,816 - ERROR - Error fetching https://www.westside.com/collections/new-in-kids Retrying : 1: 
+2025-04-07 01:31:14,816 - ERROR - Error fetching https://www.westside.com/collections/dresses-for-plus-size-women Retrying : 1: 
+2025-04-07 01:31:14,816 - ERROR - Error fetching https://www.westside.com/collections/sale-curvy-women Retrying : 1: 
+2025-04-07 01:31:14,816 - ERROR - Error fetching https://www.westside.com/collections/sale-mens-footwear Retrying : 1: 
+2025-04-07 01:31:14,816 - ERROR - Error fetching https://www.westside.com/collections/jeans-for-plus-size-women Retrying : 1: 
+2025-04-07 01:31:14,816 - ERROR - Error fetching https://www.westside.com/collections/salwars-pants-ethnic-wear-for-women Retrying : 1: 
+2025-04-07 01:31:14,817 - ERROR - Error fetching https://www.westside.com/collections/trending-now-western-wear-for-women Retrying : 1: 
+2025-04-07 01:31:14,817 - ERROR - Error fetching https://www.westside.com/collections/sneakers-for-women Retrying : 1: 
+2025-04-07 01:31:14,817 - ERROR - Error fetching https://www.westside.com/collections/flip-flops-for-women Retrying : 1: 
+2025-04-07 01:31:14,817 - ERROR - Error fetching https://www.westside.com/collections/ethnic-dresses-for-women Retrying : 1: 
+2025-04-07 01:31:14,817 - ERROR - Error fetching https://www.westside.com/collections/bags Retrying : 1: 
+2025-04-07 01:31:14,817 - ERROR - Error fetching https://www.westside.com#MainContent Retrying : 1: 
+2025-04-07 01:31:14,817 - ERROR - Error fetching https://www.westside.com/collections/accessories Retrying : 1: 
+2025-04-07 01:31:14,817 - ERROR - Error fetching https://www.westside.com/collections/comfort-sandals-for-women Retrying : 1: 
+2025-04-07 01:31:14,818 - ERROR - Error fetching https://www.westside.com/collections/ethnic-suits-for-women Retrying : 1: 
+2025-04-07 01:31:14,818 - ERROR - Error fetching https://www.westside.com/collections/view-all-lingerie Retrying : 1: 
+2025-04-07 01:31:14,818 - ERROR - Error fetching https://www.westside.com/collections/footwear-for-women Retrying : 1: 
+2025-04-07 01:31:14,818 - ERROR - Error fetching https://www.westside.com/collections/sale-man Retrying : 1: 
+2025-04-07 01:31:14,818 - ERROR - Error fetching https://www.westside.com/collections/ethnic-wear-plus-size-palazzos-and-pants Retrying : 1: 
+2025-04-07 01:31:14,818 - ERROR - Error fetching https://www.westside.com/collections/dupattas-stoles-ethnic-wear-for-women Retrying : 1: 
+2025-04-07 01:31:14,818 - ERROR - Error fetching https://www.westside.com/collections/view-all-ethnic-wear-for-women Retrying : 1: 
+2025-04-07 01:31:14,819 - ERROR - Error fetching https://www.westside.com/collections/sale-womens-footwear Retrying : 1: 
+2025-04-07 01:31:14,819 - ERROR - Error fetching https://www.westside.com/collections/new-in-mens-footwear Retrying : 1: 
+2025-04-07 01:31:14,819 - ERROR - Error fetching https://www.westside.com/collections/casual-trousers-chinos-for-men Retrying : 1: 
+2025-04-07 01:31:14,819 - ERROR - Error fetching https://www.westside.com/collections/denim-trousers Retrying : 1: 
+2025-04-07 01:31:14,819 - ERROR - Error fetching https://www.westside.com/collections/woman-heeled-shoes Retrying : 1: 
+2025-04-07 01:31:14,819 - ERROR - Error fetching https://www.westside.com/collections/dresses-jumpsuits Retrying : 1: 
+2025-04-07 01:31:14,819 - ERROR - Error fetching https://www.westside.com/collections/jackets-for-plus-size-women Retrying : 1: 
+2025-04-07 01:31:14,819 - ERROR - Error fetching https://www.westside.com/collections/boots-for-men Retrying : 1: 
+2025-04-07 01:31:14,819 - ERROR - Error fetching https://www.westside.com/collections/formal-trousers-for-men Retrying : 1: 
+2025-04-07 01:31:14,820 - ERROR - Error fetching https://www.westside.com/collections/casual-shoes-for-men Retrying : 1: 
+2025-04-07 01:31:14,820 - ERROR - Error fetching https://www.westside.com/collections/trending-now-kidswear Retrying : 1: 
+2025-04-07 01:31:14,820 - ERROR - Error fetching https://www.westside.com/collections/new-in-western-wear-for-women Retrying : 1: 
+2025-04-07 01:31:14,820 - ERROR - Error fetching https://www.westside.com/collections/sale-woman-ethnic-wear Retrying : 1: 
+2025-04-07 01:31:14,820 - ERROR - Error fetching https://www.westside.com/collections/t-shirts-for-men Retrying : 1: 
+2025-04-07 01:31:14,820 - ERROR - Error fetching https://www.westside.com/collections/kids-girl-underwear Retrying : 1: 
+2025-04-07 01:31:14,820 - ERROR - Error fetching https://www.westside.com/collections/skirts-shorts Retrying : 1: 
+2025-04-07 01:31:14,820 - ERROR - Error fetching https://www.westside.com/collections/shirts-tops Retrying : 1: 
+2025-04-07 01:31:14,820 - ERROR - Error fetching https://www.westside.com/collections/kids-girl-dresses-jumpsuits Retrying : 1: 
+2025-04-07 01:31:14,820 - ERROR - Error fetching https://www.westside.com/collections/co-ord-set Retrying : 1: 
+2025-04-07 01:31:14,820 - ERROR - Error fetching https://www.westside.com/collections/shirts-tops-1 Retrying : 1: 
+2025-04-07 01:31:14,821 - ERROR - Error fetching https://www.westside.com/collections/loungewear-sleepwear-for-men Retrying : 1: 
+2025-04-07 01:31:21,384 - INFO - Found 0 product URLs on https://www.westside.com
+2025-04-07 01:31:21,387 - INFO - Domain results saved to /Users/geo/crawler_results/11e6ba7a-2cc0-4007-ad10-c3071aaf89b1_www_virgio_com.csv
+2025-04-07 01:31:21,387 - INFO - Domain results saved to /Users/geo/crawler_results/11e6ba7a-2cc0-4007-ad10-c3071aaf89b1_www_westside_com.csv

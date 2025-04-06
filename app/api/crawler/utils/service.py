@@ -2,20 +2,13 @@ import asyncio
 import os
 import re
 import json
-import logging
 from urllib.parse import urljoin, urlparse
 import aiohttp
 from bs4 import BeautifulSoup
 from tqdm.asyncio import tqdm
 import pandas as pd
-from .constants import OUTPUT_DIR
-
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[logging.FileHandler("logs/crawler.log"), logging.StreamHandler()],
-)
-logger = logging.getLogger(__name__)
+from .files import OUTPUT_DIR
+from .logger import logger
 
 
 class EcommerceProductCrawler:
@@ -84,55 +77,49 @@ class EcommerceProductCrawler:
 
     async def is_product_url(self, url):
         """
-        Check if a URL is likely to be a product page based on patterns
+        Check if a URL is product page based on patterns
 
         Args:
             url (str): URL to check
 
         Returns:
-            bool: True if likely a product URL, False otherwise
+            bool: True if its a product URL, otherwise False
         """
         parsed_url = urlparse(url)
         path = parsed_url.path.lower()
 
-        # Check : excluded patterns
         if any(re.search(pattern, path) for pattern in self.exclude_patterns):
             return False
 
-        # Check : product patterns
         return any(re.search(pattern, path) for pattern in self.product_url_patterns)
 
     async def is_collection_url(self, url):
         """
-        Check if a URL is likely to be a collection/category page
+        Check if a URL is collection/category page
 
         Args:
             url (str): URL to check
 
         Returns:
-            bool: True if likely a collection URL, False otherwise
+            bool: True if its a collection URL, otherwise False
         """
         parsed_url = urlparse(url)
         path = parsed_url.path.lower()
 
-        # Check excluded patterns
         if any(re.search(pattern, path + parsed_url.query) for pattern in self.exclude_patterns):
             return False
 
-        # Check collection patterns
         return any(re.search(pattern, path) for pattern in self.collection_url_patterns)
 
     async def verify_product_page(self, html, url):
         """
-        Verify if a page is a product page by examining its content with enhanced detection
-        for e-commerce specific elements like size selection, pincode checks, and offers.
-
+        Verify if a page is a product page based on various factors
         Args:
             html (str): HTML content
             url (str): URL of the page
 
         Returns:
-            bool: True if confirmed as a product page, False otherwise
+            bool: True if confirmed as a product page, otherwise False
         """
         if not html:
             return False
@@ -157,19 +144,19 @@ class EcommerceProductCrawler:
         ]
 
         for pattern in cart_button_patterns:
-            # Check button text
+            # Button text
             cart_buttons = soup.find_all(['button', 'a', 'input'], string=re.compile(pattern, re.I))
-            # Check value attribute for input buttons
+            # input buttons
             cart_inputs = soup.find_all('input', {'value': re.compile(pattern, re.I)})
-            # Check class or id attributes
+            # class or id attributes
             cart_elements = soup.find_all(attrs={'class': re.compile(pattern, re.I)})
             cart_elements.extend(soup.find_all(attrs={'id': re.compile(pattern, re.I)}))
 
             if cart_buttons or cart_inputs or cart_elements:
-                product_score += 3  # Strong indicator
+                product_score += 3
                 break
 
-        # 2. Size/variant selection (very strong indicator)
+        # 2. Size selection
         size_indicators = [
             soup.find_all(['select', 'div', 'ul'], attrs={'class': re.compile(r'size', re.I)}),
             soup.find_all(['select', 'div', 'ul'], attrs={'id': re.compile(r'size', re.I)}),
@@ -185,7 +172,7 @@ class EcommerceProductCrawler:
                 product_score += 3
                 break
 
-        # 3. Pincode/Zipcode check (strong indicator for Indian e-commerce)
+        # 3. Pincode/Zipcode
         pincode_indicators = [
             soup.find_all(
                 string=re.compile(r'check\s+pincode|check\s+delivery|check\s+availability|delivery\s+to', re.I)
@@ -203,7 +190,7 @@ class EcommerceProductCrawler:
                 product_score += 2
                 break
 
-        # 4. Bank offers/payment options (good indicator)
+        # 4. Bank offers/payment
         payment_indicators = [
             soup.find_all(string=re.compile(r'bank\s+offer|payment\s+option|EMI|credit\s+card|debit\s+card', re.I)),
             soup.find_all(['div', 'section'], attrs={'class': re.compile(r'offer|payment|emi', re.I)}),
@@ -216,7 +203,7 @@ class EcommerceProductCrawler:
                 product_score += 1
                 break
 
-        # 5. Shipping information (good indicator)
+        # 5. Shipping information
         shipping_indicators = [
             soup.find_all(string=re.compile(r'shipping|delivery|dispatch|free\s+delivery|express\s+delivery', re.I)),
             soup.find_all(['div', 'section', 'p'], attrs={'class': re.compile(r'shipping|delivery', re.I)}),
@@ -228,7 +215,7 @@ class EcommerceProductCrawler:
                 product_score += 1
                 break
 
-        # 6. Product details/specifications (good indicator)
+        # 6. Product details/specifications
         detail_indicators = [
             soup.find_all(
                 ['div', 'section'], attrs={'class': re.compile(r'product[-_]detail|specification|description', re.I)}
@@ -246,7 +233,7 @@ class EcommerceProductCrawler:
                 product_score += 1
                 break
 
-        # 7. Price elements (strong indicator)
+        # 7. Price elements
         price_indicators = [
             soup.find_all(['span', 'div', 'p'], attrs={'class': re.compile(r'price|cost|mrp', re.I)}),
             soup.find_all(['span', 'div', 'p'], attrs={'id': re.compile(r'price|cost|mrp', re.I)}),
@@ -258,7 +245,7 @@ class EcommerceProductCrawler:
                 product_score += 2
                 break
 
-        # 8. Product reviews (good indicator)
+        # 8. Product reviews
         review_indicators = [
             soup.find_all(['div', 'section'], attrs={'class': re.compile(r'review|rating|star', re.I)}),
             soup.find_all(['div', 'section'], attrs={'id': re.compile(r'review|rating|star', re.I)}),
@@ -270,7 +257,7 @@ class EcommerceProductCrawler:
                 product_score += 1
                 break
 
-        # 9. Product image gallery (good indicator)
+        # 9. Product images or gallery
         gallery_indicators = [
             soup.find_all(['div', 'ul'], attrs={'class': re.compile(r'gallery|slider|product[-_]image', re.I)}),
             soup.find_all(['div', 'ul'], attrs={'id': re.compile(r'gallery|slider|product[-_]image', re.I)}),
@@ -282,12 +269,12 @@ class EcommerceProductCrawler:
                 product_score += 1
                 break
 
-        # 10. Product schema markup (very strong indicator)
+        # 10. Product schema markup
         schema_script = soup.find('script', {'type': 'application/ld+json'}, string=re.compile(r'"@type":\s*"Product"'))
         if schema_script:
             product_score += 4
 
-        # 11. Wishlist/favorites (moderate indicator)
+        # 11. Wishlist or favorites
         wishlist_indicators = [
             soup.find_all(string=re.compile(r'wishlist|favorite|save\s+for\s+later', re.I)),
             soup.find_all(['button', 'a'], attrs={'class': re.compile(r'wishlist|favorite|heart', re.I)}),
@@ -299,7 +286,7 @@ class EcommerceProductCrawler:
                 product_score += 1
                 break
 
-        # 12. Stock status (good indicator)
+        # 12. Stock status
         stock_indicators = [
             soup.find_all(string=re.compile(r'in\s+stock|out\s+of\s+stock|available|unavailable', re.I)),
             soup.find_all(['div', 'span'], attrs={'class': re.compile(r'stock|availability', re.I)}),
@@ -355,17 +342,17 @@ class EcommerceProductCrawler:
 
         # 4. Multiple product items with similar structure
         # Count product cards or items that might indicate a collection
-        product_items = soup.find_all(['div', 'li'], attrs={'class': re.compile(r'product[-_]item|item|card', re.I)})
-        if len(product_items) > 3:
-            collection_score += len(product_items) // 3  # Higher score for more products
+        # product_items = soup.find_all(['div', 'li'], attrs={'class': re.compile(r'product[-_]item|item|card', re.I)})
+        # if len(product_items) > 3:
+        #     collection_score += len(product_items) // 3  # Higher score for more products
 
-        # 5. Multiple "Add to Cart" buttons (indicates collection page with many products)
-        add_cart_buttons = []
-        for pattern in cart_button_patterns:
-            add_cart_buttons.extend(soup.find_all(['button', 'a', 'input'], string=re.compile(pattern, re.I)))
+        # # 5. Multiple "Add to Cart" buttons (indicates collection page with many products)
+        # add_cart_buttons = []
+        # for pattern in cart_button_patterns:
+        #     add_cart_buttons.extend(soup.find_all(['button', 'a', 'input'], string=re.compile(pattern, re.I)))
 
-        if len(add_cart_buttons) > 2:
-            collection_score += 2
+        # if len(add_cart_buttons) > 2:
+        #     collection_score += 2
 
         # Count product links
         product_link_count = 0
@@ -381,7 +368,7 @@ class EcommerceProductCrawler:
         # === MAKE DECISION ===
 
         # Log scores for debugging
-        logger.debug(f"URL: {url}, Product Score: {product_score}, Collection Score: {collection_score}")
+        logger.info(f"URL: {url}, Product Score: {product_score}, Collection Score: {collection_score}")
 
         # Decision logic:
         # 1. Strong product indicators (score >= 7) and product score > collection score
@@ -397,7 +384,7 @@ class EcommerceProductCrawler:
         else:
             return False
 
-    async def fetch_url(self, session, url, visited_urls, max_retries=3, retry_delay=2):
+    async def fetch_url(self, session, url, max_retries=3, retry_delay=2):
         """
         Fetch a URL and return its HTML content
 
@@ -449,9 +436,7 @@ class EcommerceProductCrawler:
 
         for anchor in soup.find_all('a', href=True):
             href = anchor['href']
-            # Convert relative URLs to absolute
             absolute_url = urljoin(base_url, href)
-            # Ensure we stay within the same domain
             if urlparse(absolute_url).netloc == urlparse(base_url).netloc:
                 links.append(absolute_url)
 
@@ -478,7 +463,6 @@ class EcommerceProductCrawler:
 
         base_domain = urlparse(domain).netloc
 
-        # Custom headers to avoid being blocked
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -488,23 +472,19 @@ class EcommerceProductCrawler:
             'Cache-Control': 'max-age=0',
         }
 
-        # Set up rate limiting
-        rate_limit = 1.0  # requests per second
+        rate_limit = 1.0
 
         async with aiohttp.ClientSession(headers=headers) as session:
             with tqdm(total=self.max_pages_per_domain, desc=f"Crawling {base_domain}") as pbar:
                 while to_visit and len(visited_urls) < self.max_pages_per_domain:
-                    # Process URLs in batches for efficiency
                     batch_size = len(to_visit)
                     current_batch = to_visit[:batch_size]
                     to_visit = to_visit[batch_size:]
 
-                    # Process the batch
                     tasks = []
                     for url in current_batch:
                         if url not in visited_urls:
                             visited_urls.add(url)
-                            # Add a small delay for rate limiting
                             await asyncio.sleep(1.0 / rate_limit)
                             tasks.append(
                                 self.process_url(
@@ -539,18 +519,16 @@ class EcommerceProductCrawler:
             to_visit (list): List of URLs to visit
             product_urls (set): Set of product URLs found
         """
-        html = await self.fetch_url(session, url, visited_urls)
+        html = await self.fetch_url(session, url)
         print("----------------URLS----------------", url)
         if not html:
             return
 
-        # Check if this is a product URL (based on URL pattern)
         if await self.is_product_url(url):
             if await self.verify_product_page(html, url):
                 confirmed_product_urls.add(url)
-            product_urls.add(url)  # Keep track of URL-pattern-based products too
+            product_urls.add(url)
 
-        # Check if this is a collection URL
         if await self.is_collection_url(url):
             collection_urls.add(url)
 
@@ -573,7 +551,6 @@ class EcommerceProductCrawler:
 
         results = await asyncio.gather(*tasks)
 
-        # Map results to domains
         for i, domain in enumerate(self.domains):
             self.results[domain] = results[i]
 
