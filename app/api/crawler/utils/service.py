@@ -3,10 +3,18 @@ import os
 import re
 import json
 from urllib.parse import urljoin, urlparse
-import aiohttp
+import time
 from bs4 import BeautifulSoup
 from tqdm.asyncio import tqdm
 import pandas as pd
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
+
 from .files import OUTPUT_DIR
 from .logger import logger
 
@@ -25,16 +33,19 @@ class EcommerceProductCrawler:
         self.timeout = timeout
 
         self.product_url_patterns = [
-            r'/product[s]?/[^/]+/?$',  # /products/product-name
-            r'/item[s]?/[^/]+/?$',  # /items/item-name
-            r'/p/[^/]+/?$',  # /p/product-id
-            r'/pd/[^/]+/?$',  # /pd/product-id
-            r'/detail/[^/]+/?$',  # /detail/product-name
-            r'/dp/[A-Z0-9]{10}/?$',  # Amazon style /dp/PRODUCTID
-            r'/-pr-[^/]+/?$',  # /-pr-productid
-            r'/[^/]+/[^/]+\d+\.html$',  # category/product12345.html
+            r'/product[s]?/[^/]+/?$',
+            r'/item[s]?/[^/]+/?$',
+            r'/p/[^/]+/?$',
+            r'/pd/[^/]+/?$',
+            r'/detail/[^/]+/?$',
+            r'/dp/[A-Z0-9]{10}/?$',
+            r'/-pr-[^/]+/?$',
+            r'/[^/]+/[^/]+\d+\.html$',
             r'/productdetail/[^/]+/?$',
             r'/product-detail/[^/]+/?$',
+            r".+/p-mp\d+$",
+            r".+/p/\d+$",
+            r"^/products/.+",
         ]
 
         # Collection/category URL patterns
@@ -73,25 +84,51 @@ class EcommerceProductCrawler:
             r'/shipping',
             r'/returns',
             r'/profile',
+            r'/orders',
+            r'/payments[s]?/[^/]+/?$',
+            r'shopping-faq',
         ]
 
-    async def is_product_url(self, url):
+    async def create_driver(self):
         """
-        Check if a URL is product page based on patterns
-
-        Args:
-            url (str): URL to check
-
-        Returns:
-            bool: True if its a product URL, otherwise False
+        Create and return a configured Selenium WebDriver
         """
+        options = Options()
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--disable-blink-features=AutomationControlled")
+        options.add_argument("--window-size=1920,1080")
+
+        options.add_argument(
+            "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+        )
+
+        options.add_argument("--disable-notifications")
+        options.add_experimental_option("excludeSwitches", ["enable-automation"])
+        options.add_experimental_option("useAutomationExtension", False)
+
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=options)
+
+        # Add scripts to evade detection
+        driver.execute_script(
+            """
+                Object.defineProperty(navigator, 'webdriver', {
+                    get: () => false,
+                });
+            """
+        )
+
+        return driver
+
+    async def is_exclude_url(self, url):
         parsed_url = urlparse(url)
         path = parsed_url.path.lower()
 
         if any(re.search(pattern, path) for pattern in self.exclude_patterns):
-            return False
-
-        return any(re.search(pattern, path) for pattern in self.product_url_patterns)
+            return True
+        return False
 
     async def is_collection_url(self, url):
         """
@@ -105,9 +142,6 @@ class EcommerceProductCrawler:
         """
         parsed_url = urlparse(url)
         path = parsed_url.path.lower()
-
-        if any(re.search(pattern, path + parsed_url.query) for pattern in self.exclude_patterns):
-            return False
 
         return any(re.search(pattern, path) for pattern in self.collection_url_patterns)
 
@@ -187,7 +221,7 @@ class EcommerceProductCrawler:
 
         for indicator_group in pincode_indicators:
             if indicator_group:
-                product_score += 2
+                product_score += 3
                 break
 
         # 4. Bank offers/payment
@@ -340,20 +374,6 @@ class EcommerceProductCrawler:
                 collection_score += 2
                 break
 
-        # 4. Multiple product items with similar structure
-        # Count product cards or items that might indicate a collection
-        # product_items = soup.find_all(['div', 'li'], attrs={'class': re.compile(r'product[-_]item|item|card', re.I)})
-        # if len(product_items) > 3:
-        #     collection_score += len(product_items) // 3  # Higher score for more products
-
-        # # 5. Multiple "Add to Cart" buttons (indicates collection page with many products)
-        # add_cart_buttons = []
-        # for pattern in cart_button_patterns:
-        #     add_cart_buttons.extend(soup.find_all(['button', 'a', 'input'], string=re.compile(pattern, re.I)))
-
-        # if len(add_cart_buttons) > 2:
-        #     collection_score += 2
-
         # Count product links
         product_link_count = 0
         for link in soup.find_all('a', href=True):
@@ -363,7 +383,7 @@ class EcommerceProductCrawler:
                 product_link_count += 1
 
         if product_link_count > 5:
-            collection_score += product_link_count // 5  # More product links means higher collection score
+            collection_score += product_link_count // 5  # means its higher collection score
 
         # === MAKE DECISION ===
 
@@ -377,14 +397,19 @@ class EcommerceProductCrawler:
 
         if (
             (product_score >= 7 and product_score > collection_score)
-            or (product_score >= 4 and product_score >= 2 * collection_score)
-            or (await self.is_product_url(url) and product_score >= 2)
+            or (product_score >= 5 and product_score >= 2 * collection_score)
+            or (await self.is_product_url(url) and product_score >= 5)
         ):
             return True
         else:
             return False
 
-    async def fetch_url(self, session, url, max_retries=3, retry_delay=2):
+    async def is_product_url(self, url: str) -> bool:
+        path = urlparse(url).path
+
+        return any(re.match(pattern, path) for pattern in self.product_url_patterns)
+
+    async def fetch_url(self, driver, url, max_retries=3, retry_delay=2):
         """
         Fetch a URL and return its HTML content
 
@@ -399,22 +424,26 @@ class EcommerceProductCrawler:
         retries = 0
         while retries <= max_retries:
             try:
-                async with session.get(url, timeout=self.timeout, allow_redirects=True) as response:
-                    print(response.status)
-                    if response.status == 200:
-                        return await response.text()
-                    else:
-                        retries += 1
-                        logger.warning(f"Failed to fetch {url}, status code: {response.status}")
-                        return None
+                driver.get(url)
+
+                # Wait for page to load
+                WebDriverWait(driver, self.timeout).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
+
+                # Wait a bit more for any JavaScript to execute
+                driver.implicitly_wait(2)
+
+                # Check if page was loaded successfully
+                if driver.page_source and len(driver.page_source) > 100:
+                    return driver.page_source
+                else:
+                    retries += 1
+                    logger.warning(f"Failed to fetch content from {url}")
+                    time.sleep(retry_delay)
             except Exception as e:
                 retries += 1
-                await asyncio.sleep(retry_delay)
-
+                time.sleep(retry_delay)
                 logger.error(f"Error fetching {url} Retrying : {retries}: {str(e)}")
-                # need to write logic for retry
-                # if url in visited_urls:
-                #     visited_urls.remove(url)
+
         return None
 
     async def extract_links(self, html, base_url):
@@ -463,18 +492,9 @@ class EcommerceProductCrawler:
 
         base_domain = urlparse(domain).netloc
 
-        headers = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
-            'Cache-Control': 'max-age=0',
-        }
+        driver = await self.create_driver()
 
-        rate_limit = 1.0
-
-        async with aiohttp.ClientSession(headers=headers) as session:
+        try:
             with tqdm(total=self.max_pages_per_domain, desc=f"Crawling {base_domain}") as pbar:
                 while to_visit and len(visited_urls) < self.max_pages_per_domain:
                     batch_size = len(to_visit)
@@ -485,10 +505,10 @@ class EcommerceProductCrawler:
                     for url in current_batch:
                         if url not in visited_urls:
                             visited_urls.add(url)
-                            await asyncio.sleep(1.0 / rate_limit)
+                            # await asyncio.sleep(0.05)
                             tasks.append(
                                 self.process_url(
-                                    session,
+                                    driver,
                                     url,
                                     base_domain,
                                     visited_urls,
@@ -501,36 +521,40 @@ class EcommerceProductCrawler:
 
                     await asyncio.gather(*tasks)
                     pbar.update(len(current_batch))
+        finally:
+            driver.quit()
 
         logger.info(f"Found {len(confirmed_product_urls)} product URLs on {domain}")
         return list(confirmed_product_urls)
 
     async def process_url(
-        self, session, url, base_domain, visited_urls, to_visit, product_urls, collection_urls, confirmed_product_urls
+        self, driver, url, base_domain, visited_urls, to_visit, product_urls, collection_urls, confirmed_product_urls
     ):
         """
         Process a single URL - fetch it, check if it's a product, and extract more links
 
         Args:
-            session : HTTP session
+            driver : Selenium driver
             url (str): URL to process
             base_domain (str): Base domain being crawled
             visited_urls (set): Set of already visited URLs
             to_visit (list): List of URLs to visit
             product_urls (set): Set of product URLs found
         """
-        html = await self.fetch_url(session, url)
-        print("----------------URLS----------------", url)
+        html = await self.fetch_url(driver, url)
         if not html:
             return
 
+        if await self.is_exclude_url(url):
+            print("EXCLUDE")
+            return
+
+        print("----------------URLS----------------", url)
+
         if await self.is_product_url(url):
+            # need to plan - have to remove it or not
             if await self.verify_product_page(html, url):
                 confirmed_product_urls.add(url)
-            product_urls.add(url)
-
-        if await self.is_collection_url(url):
-            collection_urls.add(url)
 
         links = await self.extract_links(html, url)
         for link in links:
