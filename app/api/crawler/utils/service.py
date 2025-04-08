@@ -146,11 +146,8 @@ class EcommerceProductCrawler:
         ]
 
         for pattern in cart_button_patterns:
-            # Button text
             cart_buttons = soup.find_all(['button', 'a', 'input'], string=re.compile(pattern, re.I))
-            # input buttons
             cart_inputs = soup.find_all('input', {'value': re.compile(pattern, re.I)})
-            # class or id attributes
             cart_elements = soup.find_all(attrs={'class': re.compile(pattern, re.I)})
             cart_elements.extend(soup.find_all(attrs={'id': re.compile(pattern, re.I)}))
 
@@ -300,8 +297,6 @@ class EcommerceProductCrawler:
                 product_score += 1
                 break
 
-        # === COLLECTION PAGE INDICATORS ===
-
         # 1. Product grid/list views
         collection_view_indicators = [
             soup.find_all(
@@ -353,12 +348,8 @@ class EcommerceProductCrawler:
         if product_link_count > 5:
             collection_score += product_link_count // 5  # means its higher collection score
 
-        # === MAKE DECISION ===
-
-        # Log scores for debugging
         logger.info(f"URL: {url}, Product Score: {product_score}, Collection Score: {collection_score}")
 
-        # Decision logic:
         # simple scoring logic
 
         if (
@@ -449,8 +440,6 @@ class EcommerceProductCrawler:
 
         visited_urls = set()
         to_visit = [domain]
-        product_urls = set()
-        collection_url = set()
         confirmed_product_urls = set()
 
         base_domain = urlparse(domain).netloc
@@ -476,8 +465,6 @@ class EcommerceProductCrawler:
                                     base_domain,
                                     visited_urls,
                                     to_visit,
-                                    product_urls,
-                                    collection_url,
                                     confirmed_product_urls,
                                 )
                             )
@@ -490,9 +477,7 @@ class EcommerceProductCrawler:
         logger.info(f"Found {len(confirmed_product_urls)} product URLs on {domain}")
         return list(confirmed_product_urls)
 
-    async def process_url(
-        self, driver, url, base_domain, visited_urls, to_visit, product_urls, collection_urls, confirmed_product_urls
-    ):
+    async def process_url(self, driver, url, base_domain, visited_urls, to_visit, confirmed_product_urls):
         """
         Process a single URL - fetch it, check if it's a product, and extract more links
 
@@ -513,7 +498,7 @@ class EcommerceProductCrawler:
             return
 
         if await self.is_product_url(url):
-            # need to plan - have to remove it or not
+            # need to check - have to remove it or not
             if await self.verify_product_page(html, url):
                 confirmed_product_urls.add(url)
 
