@@ -1,9 +1,14 @@
-# shoppin-task-web-crawler
-
-ecommerce website crawler
+# Ecommerce website crawler
 
 Web Crawler for Product URLs
-With Python,FastAPI, BeautifulSoup, Selenium
+
+## Requirements
+
+- Python 3.9+
+- FastAPI,
+- BeautifulSoup,
+- Selenium
+- Docker (optional)
 
 Input Domains
 
@@ -14,11 +19,12 @@ Input Domains
 "https://www.westside.com/"
 ]
 
-API Endpoints
+## API Endpoints
 
+```
 1. POST /api/crawler/
 
-Purpose: Initiates a web crawling task for a list of domains.
+Initiates a web crawling task for a list of domains.
 
 {
 "domains": ["https://example.com", "https://example2.com"],
@@ -26,6 +32,7 @@ Purpose: Initiates a web crawling task for a list of domains.
 }
 Response:
 
+`
 Edit
 {
 "job_id": "abcd1234",
@@ -67,12 +74,16 @@ Response:
 "https://www.tatacliq.com/product1"
 ]
 }
+```
 
-Install dependencies:
+## Install dependencies:
 
 pip install -r requirements.txt
-Start FastAPI server:
 
+## Start FastAPI server:
+
+```
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+```
 
 Access Swagger docs at: http://localhost:8000/docs
