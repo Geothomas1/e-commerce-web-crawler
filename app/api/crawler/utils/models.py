@@ -6,7 +6,7 @@ from typing import List, Optional, Dict
 
 class CrawlerRequest(BaseModel):
     domains: List[str]
-    max_pages_per_domain: Optional[int] = 10
+    max_pages_per_domain: Optional[int] = None
 
 
 class CrawlResponse(BaseModel):

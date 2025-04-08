@@ -4,6 +4,6 @@ bs4==0.0.2
 tqdm==4.67.1
 fastapi==0.115.11
 uvicorn==0.34.0
-pandas==2.2.4
+pandas==2.2.3
 selenium==4.31.0
 webdriver-manager==4.0.2

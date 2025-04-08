@@ -44,13 +44,11 @@ async def get_job_status(job_id: str):
     """
     Get the status of a crawling job
     """
-    print(OUTPUT_DIR)
 
     status_file = os.path.join(OUTPUT_DIR, f"{job_id}_status.json")
     if os.path.exists(status_file):
         with open(status_file, 'r') as f:
             status_data = json.load(f)
-            print(status_data)
             return JobStatus(status=status_data)
     raise HTTPException(status_code=404, detail=f"Job {job_id} not found")
 
@@ -73,8 +71,8 @@ async def get_job_results(job_id: str):
         }
     results = {}
     for domain in status_data.get('request_domain', []):
-        domain = urlparse(domain).netloc.replace('.', '_')
-        file_path = os.path.join(OUTPUT_DIR, f'{job_id}_{domain}.csv')
+        domain_file_name = urlparse(domain).netloc.replace('.', '_')
+        file_path = os.path.join(OUTPUT_DIR, f'{job_id}_{domain_file_name}.csv')
         if os.path.exists(file_path):
             urls_df = pd.read_csv(file_path)
             results[domain] = urls_df['product_url'].tolist()

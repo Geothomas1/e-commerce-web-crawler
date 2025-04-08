@@ -1391,3 +1391,36 @@
 2025-04-08 00:30:34,798 - INFO - URL: https://www.virgio.com/products/gothic-boheme-hit2-red-lace-detail-shirt, Product Score: 9, Collection Score: 0
 2025-04-08 00:30:37,141 - INFO - Found 219 product URLs on https://www.virgio.com
 2025-04-08 00:30:37,144 - INFO - Domain results saved to /Users/geo/crawler_results/91575b5d-3b8e-4aa8-bde9-c265324c34b7_www_virgio_com.csv
+2025-04-08 20:40:35,348 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-08 20:40:47,554 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-08 20:40:55,225 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-08 20:41:01,491 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-08 20:41:21,527 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-08 20:41:23,938 - INFO - Folder Created /Users/geo/crawler_results
+2025-04-08 20:42:22,500 - INFO - Starting crawler...
+2025-04-08 20:42:22,501 - INFO - ====== WebDriver manager ======
+2025-04-08 20:42:22,658 - INFO - Get LATEST chromedriver version for google-chrome
+2025-04-08 20:42:22,750 - INFO - Get LATEST chromedriver version for google-chrome
+2025-04-08 20:42:22,815 - INFO - Driver [/Users/geo/.wdm/drivers/chromedriver/mac64/135.0.7049.42/chromedriver-mac-arm64/chromedriver] found in cache
+2025-04-08 20:42:23,806 - INFO - ====== WebDriver manager ======
+2025-04-08 20:42:23,960 - INFO - Get LATEST chromedriver version for google-chrome
+2025-04-08 20:42:24,022 - INFO - Get LATEST chromedriver version for google-chrome
+2025-04-08 20:42:24,082 - INFO - Driver [/Users/geo/.wdm/drivers/chromedriver/mac64/135.0.7049.42/chromedriver-mac-arm64/chromedriver] found in cache
+2025-04-08 20:42:28,288 - INFO - Excluded URL
+2025-04-08 20:42:32,894 - INFO - Excluded URL
+2025-04-08 20:42:33,434 - INFO - Excluded URL
+2025-04-08 20:42:34,596 - INFO - Excluded URL
+2025-04-08 20:42:35,122 - INFO - Excluded URL
+2025-04-08 20:42:36,826 - INFO - Excluded URL
+2025-04-08 20:42:39,358 - INFO - Excluded URL
+2025-04-08 20:42:40,803 - INFO - Excluded URL
+2025-04-08 20:42:42,074 - INFO - Excluded URL
+2025-04-08 20:42:44,270 - INFO - Excluded URL
+2025-04-08 20:42:44,911 - INFO - Excluded URL
+2025-04-08 20:43:43,623 - ERROR - Error fetching https://www.nykaafashion.com/lp/athleisure?pageType=nf-athleisure&transaction_id=0285e32b5da0cd665acdb1f98d3b4d24 Retrying : 1: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2025-04-08 20:43:43,624 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x11195b9d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/aba51f5b46ffdd57a64d1a9047d9fa05/url
+2025-04-08 20:43:43,625 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x111988c30>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/aba51f5b46ffdd57a64d1a9047d9fa05/url
+2025-04-08 20:43:43,625 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x111988180>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/aba51f5b46ffdd57a64d1a9047d9fa05/url
+2025-04-08 20:43:45,631 - ERROR - Error fetching https://www.nykaafashion.com/lp/athleisure?pageType=nf-athleisure&transaction_id=0285e32b5da0cd665acdb1f98d3b4d24 Retrying : 2: HTTPConnectionPool(host='localhost', port=56779): Max retries exceeded with url: /session/aba51f5b46ffdd57a64d1a9047d9fa05/url (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1119ab0b0>: Failed to establish a new connection: [Errno 61] Connection refused'))
+2025-04-08 20:43:45,634 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1126ca360>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/aba51f5b46ffdd57a64d1a9047d9fa05/url
+2025-04-08 20:43:45,636 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1126ca140>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/aba51f5b46ffdd57a64d1a9047d9fa05/url

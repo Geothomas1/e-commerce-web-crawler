@@ -25,7 +25,7 @@ class EcommerceProductCrawler:
         E-commerce Product Crawler
         Args:
             domains (list): List of e-commerce domains to crawl
-            max_pages_per_domain (int): Maximum pages to crawl per domain
+            max_pages_per_domain (int): Maximum pages to crawl per domain [optional] - to scrape all the ursl pass value as null
         """
         self.domains = domains
         self.max_pages_per_domain = max_pages_per_domain
@@ -47,20 +47,6 @@ class EcommerceProductCrawler:
             r".+/p/\d+$",
             r"^/products/.+",
         ]
-
-        # Collection/category URL patterns
-        self.collection_url_patterns = [
-            r'/collection[s]?/[^/]+/?$',
-            r'/category/[^/]+/?$',
-            r'/shop/[^/]+/?$',
-            r'/catalog/[^/]+/?$',
-            r'/men[s]?/?$',
-            r'/women[s]?/?$',
-            r'/kids/?$',
-            r'/sale/?$',
-            r'/new-arrival[s]?/?$',
-        ]
-
         self.exclude_patterns = [
             r'/cart',
             r'/checkout',
@@ -130,21 +116,6 @@ class EcommerceProductCrawler:
             return True
         return False
 
-    async def is_collection_url(self, url):
-        """
-        Check if a URL is collection/category page
-
-        Args:
-            url (str): URL to check
-
-        Returns:
-            bool: True if its a collection URL, otherwise False
-        """
-        parsed_url = urlparse(url)
-        path = parsed_url.path.lower()
-
-        return any(re.search(pattern, path) for pattern in self.collection_url_patterns)
-
     async def verify_product_page(self, html, url):
         """
         Verify if a page is a product page based on various factors
@@ -160,13 +131,10 @@ class EcommerceProductCrawler:
 
         soup = BeautifulSoup(html, 'html.parser')
 
-        # Initialize score for product and collection indicators
         product_score = 0
         collection_score = 0
 
-        # === PRODUCT PAGE INDICATORS ===
-
-        # 1. Add to Cart/Bag buttons (strong indicators)
+        # Add to Cart/Bag buttons
         cart_button_patterns = [
             r'add\s+to\s+cart',
             r'add\s+to\s+bag',
@@ -391,9 +359,7 @@ class EcommerceProductCrawler:
         logger.info(f"URL: {url}, Product Score: {product_score}, Collection Score: {collection_score}")
 
         # Decision logic:
-        # 1. Strong product indicators (score >= 7) and product score > collection score
-        # 2. Medium product indicators (score >= 4) and product score >= 2 * collection score
-        # 3. URL matches product pattern and has some product indicators (score >= 2)
+        # simple scoring logic
 
         if (
             (product_score >= 7 and product_score > collection_score)
@@ -414,7 +380,7 @@ class EcommerceProductCrawler:
         Fetch a URL and return its HTML content
 
         Args:
-            session (aiohttp.ClientSession): HTTP session
+            Selenium driver
             url (str): URL to fetch
 
         Returns:
@@ -426,13 +392,10 @@ class EcommerceProductCrawler:
             try:
                 driver.get(url)
 
-                # Wait for page to load
                 WebDriverWait(driver, self.timeout).until(EC.presence_of_element_located((By.TAG_NAME, "body")))
 
-                # Wait a bit more for any JavaScript to execute
                 driver.implicitly_wait(2)
 
-                # Check if page was loaded successfully
                 if driver.page_source and len(driver.page_source) > 100:
                     return driver.page_source
                 else:
@@ -452,10 +415,10 @@ class EcommerceProductCrawler:
 
         Args:
             html (str): HTML content
-            base_url (str): Base URL for resolving relative URLs
+            base_url (str): Base URL
 
         Returns:
-            list: List of absolute URLs
+            list: List of links extracted from a href
         """
         if not html:
             return []
@@ -473,13 +436,13 @@ class EcommerceProductCrawler:
 
     async def process_domain(self, domain):
         """
-        Process a single domain to find product URLs
+        Process a single domain to find product URL's
 
         Args:
             domain (str): Domain to crawl
 
         Returns:
-            list: List of product URLs found
+            list: List of product URL's
         """
         if not domain.startswith(('http://', 'https://')):
             domain = 'https://' + domain
@@ -495,8 +458,8 @@ class EcommerceProductCrawler:
         driver = await self.create_driver()
 
         try:
-            with tqdm(total=self.max_pages_per_domain, desc=f"Crawling {base_domain}") as pbar:
-                while to_visit and len(visited_urls) < self.max_pages_per_domain:
+            with tqdm(total=len(to_visit), desc=f"Crawling {base_domain}") as pbar:
+                while to_visit and (self.max_pages_per_domain is None or len(visited_urls) < self.max_pages_per_domain):
                     batch_size = len(to_visit)
                     current_batch = to_visit[:batch_size]
                     to_visit = to_visit[batch_size:]
@@ -546,10 +509,8 @@ class EcommerceProductCrawler:
             return
 
         if await self.is_exclude_url(url):
-            print("EXCLUDE")
+            logger.info("Excluded URL")
             return
-
-        print("----------------URLS----------------", url)
 
         if await self.is_product_url(url):
             # need to plan - have to remove it or not
@@ -563,7 +524,7 @@ class EcommerceProductCrawler:
 
     async def crawl(self):
         """
-        Crawl all domains to find product URLs
+        Crawl all domains to find product URL's
 
         Returns:
             dict: Dictionary mapping domains to lists of product URLs
@@ -585,7 +546,7 @@ class EcommerceProductCrawler:
         Save the results to a CSV file
 
         Args:
-            output_file (str): Path to the output file
+            job_id (uuid): job_id
         """
 
         for domain, urls in self.results.items():
@@ -611,6 +572,3 @@ async def run_crawler(domains, max_pages, job_json, job_id):
             json.dump(status_data, f)
 
     print("\nCrawling Complete - Summary:")
-    for domain, urls in results.items():
-        print(f"{domain}: {len(urls)} product URLs found")
-        print(urls)
