@@ -25,18 +25,18 @@ Input Domains
 1. POST /api/crawler/
 
 Initiates a web crawling task for a list of domains.
-
 {
-"domains": ["https://example.com", "https://example2.com"],
-"max_pages_per_domain": 20 // Optional
+  "domains": [
+    "https://www.tatacliq.com/","https://www.nykaafashion.com/"
+  ],
+  "max_pages_per_domain": 2
 }
 Response:
 
-`
-Edit
 {
-"job_id": "abcd1234",
-"status": "pending"
+  "job_id": "b5b19f4b-fe34-4eb6-9ae2-899fed9b5019",
+  "status": "success",
+  "message": "Crawling started"
 }
 
 Saves results in:
@@ -49,9 +49,15 @@ Saves results in:
 Response:
 
 {
-"job_id": "abcd1234",
-"status": "running"
+  "status": {
+    "job_id": "b5b19f4b-fe34-4eb6-9ae2-899fed9b5019",
+    "status": "completed",
+    "request_domain": [
+      "https://www.virgio.com/"
+    ]
+  }
 }
+
 Possible status values:
 
 pending
@@ -61,6 +67,7 @@ running
 completed
 
 3. GET /crawler/results/{job_id}
+
    Purpose: Retrieve all product URLs found for each domain.
 
 Response:
