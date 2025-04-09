@@ -2,15 +2,8 @@
 blkbox
 venv
 *.npy
-*.csv
 *.pyc
 
-# Test data files
-!df_*_performance.csv
-!videos_*_train.npy
-!old.npy
-!old.csv
-# Defaults
 
 # Created by https://www.toptal.com/developers/gitignore/api/flask,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=flask,python
