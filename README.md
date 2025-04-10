@@ -94,3 +94,5 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
 
 Access Swagger docs at: http://localhost:8000/docs
+
+Doc link - https://docs.google.com/document/d/1kgER5Vsoolw_nW5RsXq5rDOFD5FB7pflaTSVwK_21VU/edit?usp=sharing
