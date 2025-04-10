@@ -20,7 +20,7 @@ from .logger import logger
 
 
 class EcommerceProductCrawler:
-    def __init__(self, domains, max_pages_per_domain=100, timeout=10):
+    def __init__(self, domains, max_pages_per_domain=None, timeout=10):
         """
         E-commerce Product Crawler
         Args:
