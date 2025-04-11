@@ -449,7 +449,7 @@ class EcommerceProductCrawler:
         try:
             with tqdm(total=len(to_visit), desc=f"Crawling {base_domain}") as pbar:
                 while to_visit and (self.max_pages_per_domain is None or len(visited_urls) < self.max_pages_per_domain):
-                    batch_size = len(to_visit)
+                    batch_size = min(10, len(to_visit))
                     current_batch = to_visit[:batch_size]
                     to_visit = to_visit[batch_size:]
 
@@ -468,7 +468,6 @@ class EcommerceProductCrawler:
                                     confirmed_product_urls,
                                 )
                             )
-
                     await asyncio.gather(*tasks)
                     pbar.update(len(current_batch))
         finally:
